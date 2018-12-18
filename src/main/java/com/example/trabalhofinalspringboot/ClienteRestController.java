@@ -25,22 +25,34 @@ public class ClienteRestController {
 	@Autowired
 	ClienteRepository repository;
 	
+	@Autowired
+	EnderecoRepository repository2;
+	
 	ClienteResourceAssembler assembler = new ClienteResourceAssembler();
 	
 	@PostConstruct
 	public void init() throws ParseException {
-		repository.save(
-			new Cliente(1l, "Carlos", 
+		
+		Cliente cliente1 = new Cliente(1l, "Carlos", 
 				"carlos@unidavi.edu.br", "111.111.111-11", 
-				new SimpleDateFormat("yyyy-MM-dd").parse("1992-12-25")));
-		repository.save(
-				new Cliente(2l, "Gerson", 
-					"gerson@unidavi.edu.br", "222.222.222-22", 
-					new SimpleDateFormat("yyyy-MM-dd").parse("1980-10-20")));
-		repository.save(
-				new Cliente(3l, "romario", 
-					"romario@unidavi.edu.br", "333.333.333-33", 
-					new SimpleDateFormat("yyyy-MM-dd").parse("1993-06-10")));
+				new SimpleDateFormat("yyyy-MM-dd").parse("1992-12-25"), 
+				new Endereco(1l, "Rua 1", "Cidade 1", "SC", "00000-000", 1l));
+		
+		repository.save(cliente1);
+
+		Cliente cliente2 = new Cliente(2l, "Gerson", 
+				"gerson@unidavi.edu.br", "222.222.222-22", 
+				new SimpleDateFormat("yyyy-MM-dd").parse("1980-10-20"), 
+				new Endereco(2l, "Rua 2", "Cidade 2", "SC", "00000-000", 2l));
+		
+		repository.save(cliente2);
+		
+		Cliente cliente3 = new Cliente(3l, "romario", 
+				"romario@unidavi.edu.br", "333.333.333-33", 
+				new SimpleDateFormat("yyyy-MM-dd").parse("1993-06-10"), 
+				new Endereco(3l, "Rua 3", "Cidade 3", "SC", "00000-000", 3l));
+		
+		repository.save(cliente3);
 	}
 	
 	@GetMapping
@@ -93,5 +105,10 @@ public class ClienteRestController {
 		} else {
 			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
+	}
+	
+	@GetMapping("/endereco/{endereco}")
+	public ResponseEntity<List<ClienteResource>> findByEndereco(@PathVariable String endereco) {
+		return new ResponseEntity<>(assembler.toResources(repository.findByEnderecoContaining(endereco)), HttpStatus.OK);
 	}
 }

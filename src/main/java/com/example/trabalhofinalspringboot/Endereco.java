@@ -1,12 +1,8 @@
 package com.example.trabalhofinalspringboot;
 
-import java.util.Date;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,15 +14,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Cliente {
-	
+public class Endereco {
+
 	@Id @GeneratedValue
 	Long id;
-	String nome;
-	String email;
-	String cpf;
-	Date dataNascimento;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	Endereco endereco;
+	String rua;
+	String cidade;
+	String estado;
+	String cep;
+	Long cliente_id;
 }
