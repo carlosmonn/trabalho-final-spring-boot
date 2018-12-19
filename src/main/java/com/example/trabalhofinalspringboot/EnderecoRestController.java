@@ -11,18 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value="/enderecos")
+@RequestMapping(value="/enderecoscontroller")
 public class EnderecoRestController {
 
 	@Autowired
 	EnderecoRepository repository;
 	
 	EnderecoResourceAssembler assembler = new EnderecoResourceAssembler();
-	
-	@GetMapping
-	public ResponseEntity<List<EnderecoResource>> getAll() {
-		return new ResponseEntity<>(assembler.toResources(repository.findAll()), HttpStatus.OK);
-	}
 	
 	@GetMapping(value="/{id}")
 	public ResponseEntity<EnderecoResource> get(@PathVariable Long id) {
@@ -34,4 +29,11 @@ public class EnderecoRestController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	/*
+	@GetMapping
+	public ResponseEntity<List<EnderecoResource>> getAll() {
+		return new ResponseEntity<>(assembler.toResources(repository.findAll()), HttpStatus.OK);
+	}
+	*/
 }

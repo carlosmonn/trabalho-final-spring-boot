@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -27,6 +28,6 @@ public class Cliente {
 	String cpf;
 	Date dataNascimento;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	Endereco endereco;
+	@OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	Endereco endereco = new Endereco();
 }

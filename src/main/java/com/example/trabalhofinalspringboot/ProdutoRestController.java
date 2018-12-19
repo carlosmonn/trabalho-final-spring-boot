@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value="/produtos")
+@RequestMapping(value="/produtoscontroller")
 public class ProdutoRestController {
 	
 	@Autowired
@@ -49,11 +49,6 @@ public class ProdutoRestController {
 				"Apple", 4599.99));
 	}
 	
-	@GetMapping
-	public ResponseEntity<List<ProdutoResource>> getAll() {
-		return new ResponseEntity<>(assembler.toResources(repository.findAll()), HttpStatus.OK);
-	}
-	
 	@GetMapping(value="/{id}")
 	public ResponseEntity<ProdutoResource> get(@PathVariable Long id) {
 		Produto produto = repository.findOne(id);
@@ -63,6 +58,11 @@ public class ProdutoRestController {
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	/*@GetMapping
+	public ResponseEntity<List<ProdutoResource>> getAll() {
+		return new ResponseEntity<>(assembler.toResources(repository.findAll()), HttpStatus.OK);
 	}
 	
 	@PostMapping
@@ -109,5 +109,5 @@ public class ProdutoRestController {
 	@GetMapping("/marca/{marca}")
 	public ResponseEntity<List<ProdutoResource>> findByMarca(@PathVariable String marca) {
 		return new ResponseEntity<>(assembler.toResources(repository.findByMarcaContaining(marca)), HttpStatus.OK);
-	}
+	}*/
 }

@@ -3,6 +3,8 @@ package com.example.trabalhofinalspringboot;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,5 +24,8 @@ public class Endereco {
 	String cidade;
 	String estado;
 	String cep;
-	Long cliente_id;
+	
+	@OneToOne
+	@JoinColumn(name = "cliente_id", referencedColumnName = "id", nullable = false)
+	Cliente cliente;
 }

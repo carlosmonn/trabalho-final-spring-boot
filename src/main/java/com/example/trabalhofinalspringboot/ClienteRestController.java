@@ -19,14 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value="/clientes")
+@RequestMapping(value="/clientescontroller")
 public class ClienteRestController {
 	
 	@Autowired
 	ClienteRepository repository;
-	
-	@Autowired
-	EnderecoRepository repository2;
 	
 	ClienteResourceAssembler assembler = new ClienteResourceAssembler();
 	
@@ -36,28 +33,26 @@ public class ClienteRestController {
 		Cliente cliente1 = new Cliente(1l, "Carlos", 
 				"carlos@unidavi.edu.br", "111.111.111-11", 
 				new SimpleDateFormat("yyyy-MM-dd").parse("1992-12-25"), 
-				new Endereco(1l, "Rua 1", "Cidade 1", "SC", "00000-000", 1l));
+				null);
 		
+		cliente1.setEndereco(new Endereco(1l, "Rua 1", "Cidade 1", "SC", "00000-000", cliente1));
 		repository.save(cliente1);
-
+		
 		Cliente cliente2 = new Cliente(2l, "Gerson", 
 				"gerson@unidavi.edu.br", "222.222.222-22", 
 				new SimpleDateFormat("yyyy-MM-dd").parse("1980-10-20"), 
-				new Endereco(2l, "Rua 2", "Cidade 2", "SC", "00000-000", 2l));
+				null);
 		
+		cliente2.setEndereco(new Endereco(2l, "Rua 2", "Cidade 2", "SC", "00000-000", cliente2));
 		repository.save(cliente2);
 		
 		Cliente cliente3 = new Cliente(3l, "romario", 
 				"romario@unidavi.edu.br", "333.333.333-33", 
 				new SimpleDateFormat("yyyy-MM-dd").parse("1993-06-10"), 
-				new Endereco(3l, "Rua 3", "Cidade 3", "SC", "00000-000", 3l));
+				null);
 		
+		cliente3.setEndereco(new Endereco(3l, "Rua 3", "Cidade 3", "SC", "00000-000", cliente3));
 		repository.save(cliente3);
-	}
-	
-	@GetMapping
-	public ResponseEntity<List<ClienteResource>> getAll() {
-		return new ResponseEntity<>(assembler.toResources(repository.findAll()), HttpStatus.OK);
 	}
 	
 	@GetMapping(value="/{id}")
@@ -69,6 +64,12 @@ public class ClienteRestController {
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	/*
+	@GetMapping
+	public ResponseEntity<List<ClienteResource>> getAll() {
+		return new ResponseEntity<>(assembler.toResources(repository.findAll()), HttpStatus.OK);
 	}
 	
 	@PostMapping
@@ -105,10 +106,10 @@ public class ClienteRestController {
 		} else {
 			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
-	}
+	}*/
 	
-	@GetMapping("/endereco/{endereco}")
+	/*@GetMapping("/endereco/{endereco}")
 	public ResponseEntity<List<ClienteResource>> findByEndereco(@PathVariable String endereco) {
 		return new ResponseEntity<>(assembler.toResources(repository.findByEnderecoContaining(endereco)), HttpStatus.OK);
-	}
+	}*/
 }
