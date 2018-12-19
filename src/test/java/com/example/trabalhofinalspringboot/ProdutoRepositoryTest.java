@@ -21,7 +21,7 @@ public class ProdutoRepositoryTest {
 		Produto produto = new Produto(
 				6l, "Produto teste", 
 				"Descrição do produto teste", 
-				"Marca teste", 123.45);
+				"Marca teste", 123.45, null);
 		
 		return repository.save(produto);
 	}
@@ -39,10 +39,10 @@ public class ProdutoRepositoryTest {
 		Produto produto = salvarProdutoTeste();
 		assertNotNull(produto);
 		
-        repository.delete(produto);
-        produto = repository.findOne(produto.getId());
+		repository.delete(produto);
+		produto = repository.findOne(produto.getId());
 
-        assertNull(produto);
+		assertNull(produto);
 	}
 	
 	@Test
@@ -52,8 +52,8 @@ public class ProdutoRepositoryTest {
 		List<Produto> produtos = repository.findByNomeContaining("Produto teste");
 		
 		assertNotNull(produtos);
-        assertFalse(produtos.isEmpty());
-        assertTrue(produtos.get(0).getNome().equals("Produto teste"));
+		assertFalse(produtos.isEmpty());
+		assertTrue(produtos.get(0).getNome().equals("Produto teste"));
 	}
 	
 	@Test
@@ -63,7 +63,7 @@ public class ProdutoRepositoryTest {
 		List<Produto> produtos = repository.findByMarcaContaining("Marca teste");
 		
 		assertNotNull(produtos);
-        assertFalse(produtos.isEmpty());
-        assertTrue(produtos.get(0).getNome().equals("Produto teste"));
+		assertFalse(produtos.isEmpty());
+		assertTrue(produtos.get(0).getNome().equals("Produto teste"));
 	}
 }

@@ -27,6 +27,7 @@ public class ProdutoRestController {
 	
 	@PostConstruct
 	public void init() {
+		/*
 		repository.save(
 			new Produto(1l, "Moto G6 Play", 
 				"Smartphone Motorola Moto G6 Play Dual Chip Android Oreo - 8.0 Tela 5.7\" Octa-Core 1.4 GHz 32GB 4G Câmera 13MP - Índigo", 
@@ -46,7 +47,7 @@ public class ProdutoRestController {
 		repository.save(
 			new Produto(5l, "iPhone 8 Plus", 
 				"iPhone 8 Plus Prata 64GB Tela 5.5\" IOS 11 4G Wi-Fi Câmera 12MP - Apple", 
-				"Apple", 4599.99));
+				"Apple", 4599.99));*/
 	}
 	
 	@GetMapping(value="/{id}")

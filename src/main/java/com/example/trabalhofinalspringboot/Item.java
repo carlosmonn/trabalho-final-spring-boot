@@ -1,13 +1,9 @@
 package com.example.trabalhofinalspringboot;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,15 +15,16 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Produto {
-
+public class Item {
+	
 	@Id @GeneratedValue
 	Long id;
-	String nome;
-	String descricao;
-	String marca;
-	Double valor;
+	Integer quantidade;
+	double total;
 	
-	@OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-	List<Item> itens;
+	@ManyToOne
+	Pedido pedido;
+	
+	@ManyToOne
+	Produto produto;
 }

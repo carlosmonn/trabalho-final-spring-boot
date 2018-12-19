@@ -29,11 +29,11 @@ public class ClienteRestController {
 	
 	@PostConstruct
 	public void init() throws ParseException {
-		
+		/*
 		Cliente cliente1 = new Cliente(1l, "Carlos", 
 				"carlos@unidavi.edu.br", "111.111.111-11", 
 				new SimpleDateFormat("yyyy-MM-dd").parse("1992-12-25"), 
-				null);
+				null, null);
 		
 		cliente1.setEndereco(new Endereco(1l, "Rua 1", "Cidade 1", "SC", "00000-000", cliente1));
 		repository.save(cliente1);
@@ -41,7 +41,7 @@ public class ClienteRestController {
 		Cliente cliente2 = new Cliente(2l, "Gerson", 
 				"gerson@unidavi.edu.br", "222.222.222-22", 
 				new SimpleDateFormat("yyyy-MM-dd").parse("1980-10-20"), 
-				null);
+				null, null);
 		
 		cliente2.setEndereco(new Endereco(2l, "Rua 2", "Cidade 2", "SC", "00000-000", cliente2));
 		repository.save(cliente2);
@@ -49,10 +49,11 @@ public class ClienteRestController {
 		Cliente cliente3 = new Cliente(3l, "romario", 
 				"romario@unidavi.edu.br", "333.333.333-33", 
 				new SimpleDateFormat("yyyy-MM-dd").parse("1993-06-10"), 
-				null);
+				null, null);
 		
 		cliente3.setEndereco(new Endereco(3l, "Rua 3", "Cidade 3", "SC", "00000-000", cliente3));
 		repository.save(cliente3);
+		*/
 	}
 	
 	@GetMapping(value="/{id}")
