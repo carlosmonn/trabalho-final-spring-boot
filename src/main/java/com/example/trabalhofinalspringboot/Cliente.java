@@ -27,7 +27,7 @@ public class Cliente {
 	String email;
 	String cpf;
 	Date dataNascimento;
-	
+    
 	@OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-	Endereco endereco = new Endereco();
+	Endereco endereco;
 }

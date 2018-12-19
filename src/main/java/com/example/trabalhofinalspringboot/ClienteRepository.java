@@ -13,14 +13,13 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 	
 	@RestResource(path = "/searchEndereco")
 	@Query(value = 
-	    "SELECT * " + 
+	    "SELECT * " +
 	    "  FROM cliente c " +
 	    "  JOIN endereco e " +
 	    "    ON e.cliente_id = c.id" +
-	    " WHERE e.rua LIKE %:endereco%" + 
-	    "    OR e.cidade LIKE %:endereco%" + 
-	    "    OR e.estado LIKE %:endereco%", 
+	    " WHERE e.rua LIKE %:endereco%" +
+	    "    OR e.cidade LIKE %:endereco%" +
+	    "    OR e.estado LIKE %:endereco%",
 	    nativeQuery = true)
 	List<Cliente> findByEnderecoContaining(@Param("endereco") String endereco);
-	
 }
